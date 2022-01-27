@@ -29,9 +29,12 @@ plastic_waste |>
 ### Exercise 1
 ```{r}
 ggplot(plastic_waste) +
-  aes(x = continent, y = waste) +
-  geom_density(aes(y = after_stat(count), color = continent)) 
+  aes(x = continent, y = waste, fill = "pink") +
+  geom_density(aes(y = after_stat(count), color = continent, alpha = .1)) 
 ```
+1. alpha went with geom becasue it was referring to the densities (which are the aesthetic used)
+
+2. color and fill went into the aesthetics because it was referring to the shapes 
 
 ```{r plastic-waste-continent}
 # insert code here
