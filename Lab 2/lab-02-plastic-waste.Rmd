@@ -17,10 +17,21 @@ plastic_waste <- read_csv(here::here("data", "plastic-waste.csv"))
 ```
 
 ## Exercises
-
+```{r}
+ggplot(data = plastic_waste) +
+  aes(x = plastic_waste_per_cap) +
+  geom_histogram(binwidth = 0.2)
+```
+```{r}
+plastic_waste |>
+  filter(plastic_waste_per_cap > 3.5)
+```
 ### Exercise 1
-
-Remove this text, and add your answer for Exercise 1 here.
+```{r}
+ggplot(plastic_waste) +
+  aes(x = continent, y = waste) +
+  geom_density(aes(y = after_stat(count), color = continent)) 
+```
 
 ```{r plastic-waste-continent}
 # insert code here
