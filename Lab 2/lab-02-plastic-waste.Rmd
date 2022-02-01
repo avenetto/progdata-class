@@ -27,7 +27,7 @@ plastic_waste |>
   filter(plastic_waste_per_cap > 3.5)
 ```
 ### Exercise 1
-```{r}
+```{r plastic-waste-continent}
 ggplot(plastic_waste) +
   aes(x = continent, y = waste, fill = "pink") +
   geom_density(aes(y = after_stat(count), color = continent, alpha = .1)) 
@@ -36,14 +36,16 @@ ggplot(plastic_waste) +
 
 2. color and fill went into the aesthetics because it was referring to the shapes 
 
-```{r plastic-waste-continent}
-# insert code here
-```
 
 ### Exercise 2
 
 ```{r plastic-waste-density}
-# insert code here
+
+ggplot(plastic_waste) +
+  aes (x = "continent", y = "waste") +
+  geom_boxplot(aes()) +
+geom_density()
+
 ```
 
 ### Exercise 3
