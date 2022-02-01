@@ -50,9 +50,14 @@ ggplot(plastic_waste) +
 ```
 
 ### Exercise 3
-
-Remove this text, and add your answer for Exercise 3 here.
-
+```{R}
+ggplot(plastic_waste) +
+  aes(x = continent,
+      y = plastic_waste_per_cap,
+      fill = continent) +
+  geom_point(color = "black",
+               alpha = .5)
+```
 ### Exercise 4
 
 Remove this text, and add your answer for Exercise 4 here.
