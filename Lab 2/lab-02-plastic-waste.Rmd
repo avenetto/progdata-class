@@ -45,7 +45,8 @@ ggplot(plastic_waste) +
       y = plastic_waste_per_cap,
       fill = continent) +
   geom_boxplot(color = "black",
-               alpha = .5)
+               alpha = .5) +
+  geom_density(alpha = .1)
 ```
 
 ### Exercise 3
