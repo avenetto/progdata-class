@@ -3,6 +3,8 @@ title: 's04: **dplyr** Exercise'
 output: 
   html_document:
     theme: paper
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!---The following chunk allows errors when knitting--->
