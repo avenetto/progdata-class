@@ -54,9 +54,22 @@ ggplot(plastic_waste) +
 ggplot(plastic_waste) +
   aes(x = continent,
       y = plastic_waste_per_cap,
-      fill = continent) +
-  geom_point(color = "black",
-               alpha = .5)
+      color = continent) +
+  geom_point(alpha = .5)
+```
+```{R}
+ggplot(plastic_waste) +
+  aes(x = coastal_pop,
+      y = plastic_waste_per_cap,
+      color = continent) +
+  geom_point(alpha = .5)
+```
+```{R}
+ggplot(plastic_waste) +
+  aes(x = total_pop,
+      y = plastic_waste_per_cap,
+      color = continent) +
+  geom_point(alpha = .5)
 ```
 ### Exercise 4
 
