@@ -40,12 +40,12 @@ ggplot(plastic_waste) +
 ### Exercise 2
 
 ```{r plastic-waste-density}
-
 ggplot(plastic_waste) +
-  aes (x = "continent", y = "waste") +
-  geom_boxplot(aes()) +
-geom_density()
-
+  aes(x = continent,
+      y = plastic_waste_per_cap,
+      fill = continent) +
+  geom_boxplot(color = "black",
+               alpha = .5)
 ```
 
 ### Exercise 3
