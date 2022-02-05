@@ -116,21 +116,25 @@ select(year, lifeExp, country) |>
 
 ```{r}
 gapminder |>
-  filter(FILL_THIS_IN)
+  filter( pop > 1000000000)
 ```
 
 2. Only keep data _from Asia_ with population greater than 100 million.
 
 ```{r}
 gapminder |>
-  filter(FILL_THIS_IN)
+ filter(continent == "Asia", pop > 100000000)
 ```
 
 3. Only keep data _from the countries Brazil and China_ with population greater than 100 million.
 
 ```{r}
 gapminder |>
-  filter(FILL_THIS_IN)
+  filter((country == "China" | country == "Brazil") & pop > 100000000 )
+```
+```{r}
+gapminder |>
+  filter(country %in% c("China", "Brazil") & pop > 100000000 )
 ```
 
 
@@ -152,7 +156,10 @@ Let's get:
 
 ```{r}
 gapminder |>
-  mutate(FILL_THIS_IN)
+  mutate(
+    grossGDP = gdpPercap * pop, 
+    gdpBill = round(grossGDP / 1000000000, 2)
+    )
 ```
 
 Notice the backwards compatibility! No need for loops!
@@ -161,7 +168,11 @@ Try the same thing, but with `transmute` (drops all other variables).
 
 ```{r}
 gapminder |>
-  transmute(FILL_THIS_IN)
+  transmute(
+    country,
+    year,
+    grossGDP = gdpPercap * pop, 
+    gdpBill = round(grossGDP / 1000000000, 2))
 ```
 
 The `if_else` function is useful for changing certain elements in a data frame.
@@ -170,7 +181,13 @@ Example: Suppose Canada's 1952 life expectancy was mistakenly entered as 68.8 in
 
 ```{r}
 gapminder |>
-  mutate(FILL_THIS_IN)
+  mutate(
+    lifeExp = if_else(
+      condition = country == "Canada" & year == 1952, 
+      true = 70, 
+      false = lifeExp
+      )
+  )
 ```
 
 Your turn: 
@@ -246,8 +263,8 @@ Like `mutate()`, `summarize()` will compute a new column, but each column needs 
 
 ```{r}
 gapminder |> 
-  summarize(mu = mean(lifeExp),
-            sigma = sd(lifeExp))
+  summarize(mean = mean(lifeExp),
+            sd = sd(lifeExp))
 ```
 
 This is most useful if combined with `group_by()`.
