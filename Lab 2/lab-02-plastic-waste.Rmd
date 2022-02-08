@@ -13,7 +13,8 @@ library (tidyverse)
 
 ```{r load-data, message=FALSE}
 install.packages("here")
-plastic_waste <- read_csv(here::here("data", "plastic-waste.csv"))
+plastic_waste <- read_csv(here::here("Progdata-classs", "progdata-class", "data", "plastic-waste.csv"))
+
 ```
 
 ## Exercises
@@ -71,14 +72,14 @@ ggplot(plastic_waste) +
       y = plastic_waste_per_cap,
       color = continent) +
   geom_point(alpha = .5) +
-  geom_line()
+  geom_smooth()
 ```
 ### Exercise 4
 
 Remove this text, and add your answer for Exercise 4 here.
 
 ```{r plastic-waste-violin}
-# insert code here
+
 ```
 
 ### Exercise 5

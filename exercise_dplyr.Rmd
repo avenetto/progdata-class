@@ -324,8 +324,15 @@ gapminder |>
 2. 
 Let's compute the mean Agreeableness score across items for each participant in the `psych::bfi` dataset. 
 Be sure to handle `NA`!
-
 ```{r}
+library(psychTools)
+
+dat_bfi <- psychTools::bfi  |>
+  rownames_to_column(var = ".id") |>
+as_tibble()
+```
+```{r}
+
 psych::bfi |>
   as_tibble(rownames = ".id") |> 
   select(.id, A1:A5) |>
@@ -346,7 +353,65 @@ psych::bfi |>
          O_mean = mean(c_across(starts_with("O"), na.rm = TRUE))) |> 
   ungroup()
 ```
+```{R}
+dat_bfi |>
+  mutate(
+    gender = recode(gender, "1" = "man", "2" = "woman")
+  ) |>
+  select(.id, gender, education) |>
+  head()
 
+dat_bfi |>
+  mutate(
+    education = recode(education, "1" = "HS", "2" = "HS", .default = "More than HS")
+  ) |>
+  select(.id, gender, education) |>
+  head()
+```
+```{r}
+dat_bfi |>
+  group_by(gender) |>
+  summarize(
+    across(
+      A1:A5,
+      mean,
+      na.rm = TRUE
+    )
+  )
+```
+```
+```
+```{r}
+dat_bfi |>
+  group_by(gender) |>
+  summarize(
+    across(
+      A1:A5,
+      mean,
+      na.rm = TRUE
+    )
+  )
+```
+```{r}
+addfunction(x) x
+
+```
+```{r}
+dat_bfi |>
+  group_by(gender) |>
+  summarize(
+    across(
+      A1:A5,
+      list(
+        mean = \(x) mean(x, na.rm = TRUE),
+        sd = \(x) sd(x, na.rm = TRUE)
+      )
+    )
+  )
+```
+```{r}
+
+```
 Now compute mean scores for the other Big Five traits, as well as 
 `sd` and `min` scores for each person.
 
