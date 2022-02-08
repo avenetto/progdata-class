@@ -1,0 +1,30 @@
+---
+title: "lab3-02082022"
+author: "Angelina Venetto"
+date: "2/8/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r setup}
+library(tidyverse)
+library(gapminder)
+glimpse(gapminder)
+select(gapminder,country, year)
+```
+#Exercise 24.2
+```{r}
+gapminder |>
+  filter((country == "Afghanistan" | country == "Albania" | country == "Algeria") & year > 1970, year < 1980) |>
+  select(country, gdpPercap)
+
+```
+#Exercise 24.2.4
+```{r}
+gapminder |>
+  filter(max(gdpPercap)) 
+
+```
+

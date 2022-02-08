@@ -13,6 +13,7 @@ library (tidyverse)
 
 ```{r load-data, message=FALSE}
 install.packages("here")
+library(here)
 plastic_waste <- read_csv(here::here("Progdata-classs", "progdata-class", "data", "plastic-waste.csv"))
 
 ```
@@ -42,19 +43,19 @@ ggplot(plastic_waste) +
 
 ```{r plastic-waste-density}
 ggplot(plastic_waste) +
-  aes(x = continent,
-      y = plastic_waste_per_cap,
-      fill = continent) +
+  aes(x = plastic_waste_per_cap,
+      y = continent, fill = continent) +
   geom_boxplot(color = "black",
-               alpha = .5) +
+               alpha = .5,
+               ) +
   geom_density(alpha = .1)
 ```
 
 ### Exercise 3
 ```{R}
 ggplot(plastic_waste) +
-  aes(x = continent,
-      y = plastic_waste_per_cap,
+  aes(x = plastic_waste_per_cap,
+      y = continent,
       color = continent) +
   geom_point(alpha = .5)
 ```
