@@ -15,12 +15,14 @@ lotr  <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/da
   rename(Species = Race)
 ```
 # Wide species into columns 
+#note: ID cols is what you are NOT going to pivot. For this ex, the mius sign is saying NOT that column
 ```{r}
 (lotr_wide <- lotr |> 
   pivot_wider(id_cols = c(-Species, -Words), 
               names_from = Species, 
               values_from = Words))
 ```
+#Re-Legnthen 
 ```{r}
 lotr_wide |> 
   pivot_longer(cols = Elf:Man, 
