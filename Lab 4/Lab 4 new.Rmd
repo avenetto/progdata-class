@@ -50,8 +50,8 @@ mutate(
 ```{r}
 green_data <- green_data |> 
 mutate(
-  green2 = recode(green2, "1" = 5, "2" = 4, "3" = 3, "4" = 2, "5" = 1) comp6 = max(comp6, na.IM = TRUE) - min(comp6, na.rm = TRUE) - comp6
-  )
+  green2 = recode(green2, "1" = 5, "2" = 4, "3" = 3, "4" = 2, "5" = 1)comp6 = max(comp6, na.IM = TRUE) - min(comp6, na.rm = TRUE) - comp6)
+  
 ```
 
 ```{r}
