@@ -4,7 +4,6 @@ author: "Angelina Venetto"
 date: "2/27/2022"
 output: html_document
 ---
-
 ```{r}
 library(tidyverse)
 set.seed(123)
@@ -27,21 +26,11 @@ family  <- read_csv(
 ```{r}
 family_longest <- family |> 
   pivot_longer(
-    cols = w1_comm_parent:w2_satis_child,
-    names_to = c("family_id", "family_member", "wave", "scale"),
-    names_perfix = "w1" "w2",
-    names_sep = "_",
-    values_to = "score"
-    
+  cols = w1_comm_parent:w2_satis_child,
+  names_to = c("wave", "scale", "family_member"),
+  names_sep = "_",
+  values_to = "score"
+
   )
-
 print(family_longest)
-```
-
-```{r}
-WHO <- who |>
-    select(country:year, starts_with("new_")) |> 
-    rename_with(~ stringr::str_replace(.x, "f", "f_"), starts_with("new_")) |> 
-    rename_with(~ stringr::str_replace(.x, "m", "m_"), starts_with("new_"))
-knitr::kable(WHO, rownames = FALSE)
 ```
