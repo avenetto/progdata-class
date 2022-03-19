@@ -34,3 +34,13 @@ family_longest <- family |>
   )
 print(family_longest)
 ```
+```{r}
+family_long <- family |> 
+  pivot_longer(
+  cols = w1_comm_parent:w2_satis_child,
+  names_to = c("wave", ".value", "family_member"),
+  names_sep = "_",
+
+  )
+print(family_long)
+```
