@@ -42,5 +42,7 @@ family_long <- family |>
   names_sep = "_",
 
   )
+
 print(family_long)
 ```
+it is easier to find missing data in a longer format, as opposed to a wide format. Some of the families missing wave 2 data are 7, 14, 23, 26, 32...etc.
