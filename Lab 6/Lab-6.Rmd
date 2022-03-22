@@ -1,0 +1,35 @@
+---
+title: "Lab 6"
+author: "Angelina Venetto"
+date: "3/19/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("singer")
+```
+```{r}
+songs <- read_csv("https://raw.githubusercontent.com/bwiernik/progdata-class/master/data/singer/songs.csv")
+locations <- read_csv("https://raw.githubusercontent.com/bwiernik/progdata-class/master/data/singer/loc.csv")
+
+(time <- as_tibble(songs) |> 
+   rename(song = title))
+
+(album <- as_tibble(locations) |> 
+   select(title, everything()) |> 
+   rename(album = release,
+          song  = title))
+```
+```{r}
+time |> 
+  left_join(album, c(by = "artist_name", "song")
+ 
+```
+```{r}
+time |> 
+  FILL_THIS_IN(album, by = "song")
+```
