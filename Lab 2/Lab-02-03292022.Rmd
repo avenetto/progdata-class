@@ -1,7 +1,7 @@
 ---
 title: "Lab 02 - Plastic waste"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Angelina Venetto"
+date: "03-29-2022"
 output: html_document
 ---
 
@@ -10,6 +10,9 @@ output: html_document
 library(tidyverse)
 library(ggplot2)
 library(here)
+library(ggplot2)
+library(dplyr)
+library("patchwork")
 ```
 
 ```{r}
@@ -22,17 +25,22 @@ plastic_waste <- read_csv(here::here("data", "plastic-waste.csv"))
 
 NA = missing values 
 
+
 ```{r plastic-waste-continent}
-#ggplot(data = plastic_waste) +
-  #aes(x = plastic_waste_per_cap) +
-   #geom_histogram(aes(y = after_stat(count)
+ggplot(data = plastic_waste) +
+  aes(x = continent,
+      color = continent,
+      fill = continent) +
+  geom_bar()
+geom_density(aes(y = after_stat(count)))
 ```
 
-```{r}
-#ggplot(plastic_waste) +
-  #aes(x = continent, y = plastic_waste_per_cap, fill = "pink") +
-  #geom_density(aes(y = after_stat(count), color = continent, alpha = .1)
-
+```{r plastic-waste-continent density}
+ggplot(data = plastic_waste) +
+  aes(x = continent,
+      color = continent,
+      fill = continent) +
+  geom_density()
 ```
 
 ### Exercise 2
