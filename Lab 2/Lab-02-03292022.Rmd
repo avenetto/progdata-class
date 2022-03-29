@@ -6,16 +6,14 @@ output: html_document
 ---
 
 ## Load packages and data
-
-```{r setup, message=FALSE}
-# Load the tidyverse package
+```{r}
 library(tidyverse)
 library(ggplot2)
-install.packages("ggdist")
+library(here)
 ```
 
-```{r load-data, message=FALSE}
-plastic_waste <- read.csv(here::here("data/plastic-waste.csv"))
+```{r}
+plastic_waste <- read_csv(here::here("data", "plastic-waste.csv"))
 ```
 
 ## Exercises
@@ -25,15 +23,15 @@ plastic_waste <- read.csv(here::here("data/plastic-waste.csv"))
 NA = missing values 
 
 ```{r plastic-waste-continent}
-ggplot(data = plastic_waste) +
-  aes(x = plastic_waste_per_cap) +
-   geom_histogram(aes(y = after_stat(count)
+#ggplot(data = plastic_waste) +
+  #aes(x = plastic_waste_per_cap) +
+   #geom_histogram(aes(y = after_stat(count)
 ```
 
 ```{r}
-ggplot(plastic_waste) +
-  aes(x = continent, y = plastic_waste_per_cap, fill = "pink") +
-  geom_density(aes(y = after_stat(count), color = continent, alpha = .1)) 
+#ggplot(plastic_waste) +
+  #aes(x = continent, y = plastic_waste_per_cap, fill = "pink") +
+  #geom_density(aes(y = after_stat(count), color = continent, alpha = .1)
 
 ```
 
@@ -59,7 +57,40 @@ ggplot(na.omit(plastic_waste)) +
 #Density shows proportion, while the box plots show range
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
+```{r}
+ggplot(plastic_waste) +
+  aes(x = continent,
+      y = plastic_waste_per_cap,
+      fill = continent,
+      color = continent) +
+  geom_point()
+```
+```{r}
+ggplot(plastic_waste) +
+  aes(x = plastic_waste_per_cap,
+      y = total_pop,) +
+  geom_point()
+```
+```{r plastic-waste-population-total}
+ggplot(plastic_waste) +
+  aes(x = total_pop,
+      y = plastic_waste_per_cap,
+      fill = plastic_waste_per_cap,
+      color = plastic_waste_per_cap) +
+  geom_point() +
+  geom_smooth(color = "black",
+              fill = "black")
+```
+```{r plastic-waste-population-coastal}
+ggplot(plastic_waste) +
+  aes(x = coastal_pop,
+      y = plastic_waste_per_cap,
+      fill = plastic_waste_per_cap,
+      color = plastic_waste_per_cap) +
+  geom_point() +
+  geom_smooth(color = "black",
+              fill = "black")
+```
 
 ### Exercise 4
 
@@ -69,49 +100,12 @@ Remove this text, and add your answer for Exercise 4 here.
 # insert code here
 ```
 
-### Exercise 5
-
-Remove this text, and add your answer for Exercise 5 here.
-
-```{r plastic-waste-mismanaged}
-# insert code here
-```
-
-### Exercise 6
-
-Remove this text, and add your answer for Exercise 6 here.
-
-```{r plastic-waste-mismanaged-continent}
-# insert code here
-```
-
-### Exercise 7
-
-Remove this text, and add your answer for Exercise 7 here.
-
-```{r plastic-waste-population-total}
-# insert code here
-```
-
-```{r plastic-waste-population-coastal}
-# insert code here
-```
-
-### Exercise 8
-
-Remove this text, and add your answer for Exercise 8 here.
-
-```{r recreate-viz}
-# insert code here
-```
-
-## Pro-Tips
 
 ### Excercise 3
 
 Try this :D
 
-```
+```{r}
 ggplot(data = plastic_waste, 
        mapping = aes(x = continent, 
                      y = plastic_waste_per_cap)) +
