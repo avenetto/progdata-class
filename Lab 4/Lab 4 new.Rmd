@@ -113,4 +113,37 @@ green_data
 ```
 #Question 4
 #make a plot to illustrate POMP
+
+#Green Total Histogram
 ```{r}
+ggplot(green_data) +
+  aes(x = green_total_pomp) +
+  geom_histogram()
+```
+#Comp Total Histogram
+```{r}
+ggplot(green_data) +
+  aes(x = comp_total_pomp) +
+  geom_histogram()
+```
+#Intel Total Histogram
+```{r}
+ggplot(green_data) +
+  aes(x = intel_total_pomp) +
+  geom_histogram()
+```
+#Open Total Histogram
+```{r}
+ggplot(green_data) +
+  aes(x = open_total_pomp) +
+  geom_histogram()
+```
+#Question 5
+#Scatter plot between green rep and personality 
+
+```{r}
+ggplot(green_data) +
+  aes(x = open_total_pomp, y = green_total_pomp, color = factor(student)) +
+geom_point() +
+  geom_smooth()
+```
