@@ -14,52 +14,103 @@ library(dplyr)
 ```
 
 ```{r}
-dictionary <- readr::read_csv(here::here("data", "green_dictionary.csv"))
-green_data <- readr::read_csv(here::here("data", "green_data.csv"))
+dictionary <- readr::read_csv(here::here("progdata-class", "data", "green_dictionary.csv"))
+green_data <- readr::read_csv(here::here("progdata-class", "data", "green_data.csv"))
+```
+#QUESTION 1.
+
+#check histograms 
+```{r}
+green_data |>
+  pull(green1) |>
+  hist()
 ```
 ```{r}
-green_data |> 
-  pull(open10) |> 
+green_data |>
+  pull(open10) |>
+  hist()
+```
+#find unique values in Open 10
+```{r}
+green_data |>
+  pull(open10) |>
   unique()
 ```
+#Recode all columns exept ID to get rid of -99
 ```{r}
-green_data |> 
-  select(-id) |> 
-  unlist() |> 
-  unique()
+green_data <- green_data |>
+  mutate (
+    across(
+      -id,
+      \(x) recode(x, "1" = 1, "2" = 2, "3" = 3,"4" = 4, "5" = 5, "-99" = NA_real_)
+    )
+  )
 ```
+    )
+  )
+#QUESTION 2.
+#pull items that need to be reverse scored, use pull to get just the vector. 
 ```{r}
-green_data <- green_data |> 
+reversed <- dictionary |>
+  filter(Keying == -1) |>
+  pull(Item)
+```
+#reverse score 
+##comp 6 = taking highest number (5), adding to lowest number(1), subtracting all scores from that number (6)
+```{r}
+green_data <- green_data |>
+  mutate(
+    green2 = recode(green2, "1" = 5, "2" = 4, "3" = 3, "4" = 2, "5" = 1))
+    comp = max(comp6, na.rm = TRUE) - min(comp6, na.rm = TRUE) comp6
+    
+  )
+```
+#This way is cleaner because you can assign to all reverse columns at once, since i created the "reverse" ovject out of the reverse score coulumns previously
+```{r}
+green_data <- green_data |>
   mutate(
     across(
-     -id,
-     \(x) recode(x,"1" = 1, "2" = 2, "3" = 3, "4" = 4, "5" = 5
-                 "-99" = NA_real_  )
+     all_of(reversed),
+     \(x) recode(x, "1" = 5, "2" = 4, "3" = 3, "4" = 2, "5" = 1)
     )
+    
   )
 ```
+#create reverse item function 
 ```{r}
-green_data <- green_data |> 
-mutate(
-    across(
-     -id,
-     \(x) na_if(x, -99)
-    )
-  )
-```
-```{r}
-green_data <- green_data |> 
-mutate(
-  green2 = recode(green2, "1" = 5, "2" = 4, "3" = 3, "4" = 2, "5" = 1)comp6 = max(comp6, na.IM = TRUE) - min(comp6, na.rm = TRUE) - comp6)
-  
-```
+reverse_item <- \(x)
+{ recode(x, "1" = 5, "2" = 4, "3" = 3, "4" = 2, "5" = 1)}
 
-```{r}
-green_data <- green_data |> 
-mutate(
-  across(
-    c(green2, comp6, comp7)
-               )
-  )
-  
+reverse_item(1:5)
 ```
+#Compute total scores
+```{r}
+green_data <- green_data |>
+  rowwise() |>
+  mutate(
+    green_total = mean(c_across(green1:green5), na.rm = TRUE),
+    comp_total = mean(c_across(comp1:comp10), na.rm = TRUE),
+    intel_total = mean(c_across(intel1:intel10), na.rm = TRUE),
+    open_total = mean(c_across(open1:open10), na.rm = TRUE),
+    .after = id
+) |>
+  ungroup()
+  green_data
+```
+#Question 3
+#Rescale variable to go from 0-100
+```{r}
+green_data <- green_data |>
+  mutate(
+    across(
+      green_total:open_total,
+      \(x) 100 * (x - 1) / (5 - 1),
+      .names = "{.col}_pomp"
+      ),
+    .after = open_total
+  )
+green_data
+```
+#Question 4
+#make a plot to illustrate POMP
+```{r}

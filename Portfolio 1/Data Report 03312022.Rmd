@@ -1,0 +1,14 @@
+---
+title: "Data report"
+author: "Angelina Venetto"
+date: "3/31/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+install.packages("tidytuesdayR")
+```
+
+```{r}
+chocolate <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-18/chocolate.csv')
+```
