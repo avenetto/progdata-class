@@ -151,3 +151,39 @@ ggplot() +
 geom_point() +
   geom_smooth(method = "lm")
 ```
+#Question 6
+#Compare green rep for students and non students in a rainfall plot
+
+```{r}
+green_data |>
+  #drop_na(student)
+  filter(!is.na(student)) |>
+
+ggplot() +
+  aes(x = green_total_pomp, color = factor(student), fill = factor(student)) +
+  
+ geom_density(size = .2,
+               alpha = .5) +
+  
+geom_bar() + 
+
+  geom_dotplot(binwidth = 1,
+               dotsize = 4,
+             color = "black",
+             
+             fill = "black",
+            
+             alpha = .5)
+
+  
+```
+#Question 7.
+#Summary Table for total scores
+```{r}
+green_data |> 
+  group_by(student) |>
+  summarize(
+    mean = mean(across(comp_total_pomp:open_total_pomp)),
+    sd = sd(across(comp_total_pomp:open_total_pomp)
+  ))
+```
