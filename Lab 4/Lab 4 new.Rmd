@@ -142,8 +142,12 @@ ggplot(green_data) +
 #Scatter plot between green rep and personality 
 
 ```{r}
-ggplot(green_data) +
+green_data |>
+  #drop_na(student)
+  filter(!is.na(student)) |>
+
+ggplot() +
   aes(x = open_total_pomp, y = green_total_pomp, color = factor(student)) +
 geom_point() +
-  geom_smooth()
+  geom_smooth(method = "lm")
 ```
