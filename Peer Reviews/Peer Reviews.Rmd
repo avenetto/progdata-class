@@ -7,5 +7,5 @@ output: html_document
  # https://github.com/rrorman/progdata-class/issues/2
  # https://github.com/shossain7757/progdata-class/issues/5
  # https://github.com/sabeisenberg/progdata-class/issues/4
- 
+ # https://github.com/tinale9/ProgDataClass/issues/3
 
