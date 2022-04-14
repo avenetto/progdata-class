@@ -9,22 +9,34 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r setup}
+library(dplyr)
 library(tidyverse)
 library(gapminder)
 glimpse(gapminder)
 select(gapminder,country, year)
 ```
-#Exercise 24.2
+#Exercise  1.1/1.2
 ```{r}
-gapminder |>
-  filter((country == "Afghanistan" | country == "Albania" | country == "Algeria") & year > 1970, year < 1980) |>
+
+gapminder_clean <- gapminder |>
+  filter((country == "Afghanistan" | country == "Albania" | country == "Algeria") & year >= 1970, year < 1980) |>
   select(country, gdpPercap)
 
+print(gapminder_clean)
+
 ```
-#Exercise 24.2.4
 ```{r}
-gapminder |>
-  filter(max(gdpPercap)) 
-
+print(gapminder)
 ```
-
+#Exercise 1.3
+```{r}
+LifeExp_drop <- gapminder |>
+  group_by(country) |>
+  mutate(lifeExp_drop = lifeExp - lag(lifeExp)) |>
+  filter(lifeExp_drop < "0")
+  print(LifeExp_drop)
+```
+#Exercise 1.4
+```{r}
+MaxGDP <- gapminder |>
+   
