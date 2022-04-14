@@ -9,3 +9,4 @@ output: html_document
  #3 https://github.com/sabeisenberg/progdata-class/issues/4
  #4 https://github.com/tinale9/ProgDataClass/issues/3
  #5 https://github.com/reupton/progdata-class/issues/4
+ #6 https://github.com/negarmaleki96/progdata-class/issues/3
