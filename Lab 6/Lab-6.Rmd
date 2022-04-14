@@ -24,12 +24,18 @@ locations <- read_csv("https://raw.githubusercontent.com/bwiernik/progdata-class
    rename(album = release,
           song  = title))
 ```
+#1. join songs and corresponding albums. We know the corresponding albums for Grievance, Stupidmop, President Tense, MFc, Lukin, It's Lulu, Sparrow, etc. 
 ```{r}
 time |> 
-  left_join(album, c(by = "artist_name", "song")
- 
+  left_join(album, by = "song")
 ```
+#2. Add corresponding albums to "time" tibble, whuile perserving rows even if album info is not available 
 ```{r}
 time |> 
-  FILL_THIS_IN(album, by = "song")
+  full_join(album, by = "song")
+```
+#2. Songs in year but no album info 
+```{r}
+time |> 
+  full_join(album, by = "song")
 ```
