@@ -1,0 +1,9 @@
+---
+title: "Lab 7"
+author: "Angelina Venetto"
+date: "4/14/2022"
+output: html_document
+---
+
+Created new repo for portfolio 1, can be found here: 
+https://github.com/avenetto/Project-1-
