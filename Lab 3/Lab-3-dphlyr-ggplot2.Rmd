@@ -87,6 +87,31 @@ geom_smooth()
 
 #Exercise 2.2
 ```{r}
+penguins |>
+  summarize(
+    mean = mean(bill_length_mm),
+    sd = sd(bill_length_mm),
+    median = median(bill_length_mm),
+    n = n(species)
+  )
+```
+```{r}
+ggplot(penguins) +
+  aes(y = species,
+      x = bill_length_mm,
+      fill = species,
+      color = species) +
+  geom_boxplot(color = "black",
+               alpha = .4,
+               width = .1,
+               size = .5) +
+  ggdist::stat_slab(height = .3,
+                    color = "black",
+                    size = .2,
+                    alpha = .5,
+                    position_nudge(y = .2))
+```
+#referenced the raincloud plot from 16.9 on our lab website
 
 
 
