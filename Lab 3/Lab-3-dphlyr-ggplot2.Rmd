@@ -12,11 +12,14 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(tidyverse)
 library(gapminder)
+palmerpenguins::penguins
+library(palmerpenguins)
 glimpse(gapminder)
 select(gapminder,country, year)
 ```
 #Exercise  1.1/1.2
 ```{r}
+
 
 gapminder_clean <- gapminder |>
   filter((country == "Afghanistan" | country == "Albania" | country == "Algeria") & year >= 1970, year < 1980) |>
@@ -39,4 +42,52 @@ LifeExp_drop <- gapminder |>
 #Exercise 1.4
 ```{r}
 MaxGDP <- gapminder |>
-   
+```
+
+#Exercise 1.5 
+```{r}
+Canada <- gapminder |>
+  filter(country == "Canada")
+```
+```{r}
+ggplot(Canada) +
+  aes(x = gdpPercap, y = lifeExp) +
+  geom_point()
+scale_x_continuous(
+ 
+  trans = "log10"
+)
+```
+
+#Exercise 2.1
+```{r}
+gapminder |>
+  summarize(
+    mean = mean(lifeExp),
+    sd = sd(lifeExp),
+    median = median(lifeExp)
+  )
+```
+```{r}
+ gapminder |>
+  summarize(
+    mean = mean(gdpPercap),
+    sd = sd(gdpPercap),
+    median = median(gdpPercap)
+  )
+```
+    
+```{r}
+ggplot(gapminder) +
+  aes(x = gdpPercap, y = lifeExp) +
+  geom_point() +
+geom_smooth()
+
+```
+
+#Exercise 2.2
+```{r}
+
+
+
+
