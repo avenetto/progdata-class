@@ -14,4 +14,5 @@ output: html_document
  #8 https://github.com/priyacollins/progdata-class/issues/3
  #9 https://github.com/aeperusse/progdata-class/issues/2
  #10 https://github.com/judesullivan/progdata-class/issues/3
- 
+ #11 https://github.com/rrorman/progdata-class/issues/4
+ #12 https://github.com/jayschmidtavendano/progdata-class/issues/2
